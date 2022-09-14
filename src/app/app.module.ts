@@ -6,7 +6,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { HomeModule } from './home/home.module';
-import { MdbCheckboxModule } from 'mdb-angular-ui-kit/checkbox';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { MessageModule } from './shared/message/message.module';
@@ -26,7 +25,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     HttpClientModule,
     AuthenticationModule,
     HomeModule,
-    MdbCheckboxModule,
     FormsModule,
     ReactiveFormsModule,
     HomeModule,
