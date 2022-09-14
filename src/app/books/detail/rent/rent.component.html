@@ -1,0 +1,47 @@
+<div class="modal-content">
+  <div class="modal-header">
+    <h5 class="modal-title">Previsão de devolução</h5>
+    <button
+      type="button"
+      class="close"
+      data-dismiss="modal"
+      aria-label="Close"
+      (click)="onClose()"
+    >
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <form [formGroup]="dateForm" #fieldDate="ngForm">
+    <div class="modal-body">
+      <span>Escolha uma data para devolver o livro: </span>
+      <input type="date" formControlName="date" />
+    </div>
+    <div class="modal-footer">
+      <button
+        type="button"
+        class="btn btn-success"
+        (click)="onConfirm()"
+        [disabled]="dateForm.invalid"
+      >
+        Alugar
+      </button>
+
+      <button
+        type="button"
+        class="btn btn-secondary"
+        data-dismiss="modal"
+        (click)="onClose()"
+      >
+        Fechar
+      </button>
+      <app-message
+        message="Campo obrigatório"
+        *ngIf="dateForm.get('date')?.errors?.['required'] && dateForm.get('date')?.touched"
+      ></app-message>
+      <app-message
+        message="Data da previsão de devolução inválida, passou ou ainda estamos nela!"
+        *ngIf="dateForm.get('date')?.errors?.['dateIs'] && dateForm.get('date')?.touched"
+      ></app-message>
+    </div>
+  </form>
+</div>

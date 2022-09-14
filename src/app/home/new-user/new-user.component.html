@@ -1,0 +1,79 @@
+<div class="row">
+  <aside class="col-sm-4 centered">
+    <div class="card">
+      <article class="card-body">
+        <a
+          href=""
+          class="float-right btn btn-outline-primary"
+          [routerLink]="['']"
+          >Sign up</a
+        >
+        <h4 class="card-title text-center mb-4 mt-1">Register</h4>
+        <form [formGroup]="newUserForm" (submit)="register()">
+          <div class="form-group">
+            <label>Your login</label>
+            <input
+              name="login"
+              class="form-control"
+              placeholder="Login"
+              type="text"
+              formControlName="login"
+              required
+            />
+            <app-message
+              *ngIf="newUserForm.get('login')?.errors?.['required'] && newUserForm.get('login')?.touched"
+              message="Login obrigatório"
+            ></app-message>
+          </div>
+          <div class="form-group">
+            <label>Your email</label>
+            <input
+              name="email"
+              class="form-control"
+              placeholder="Email"
+              type="email"
+              formControlName="email"
+              required
+            />
+            <app-message
+              *ngIf="newUserForm.get('email')?.errors?.['required'] && newUserForm.get('email')?.touched"
+              message="E-mail obrigatório"
+            ></app-message>
+            <app-message
+              *ngIf="newUserForm.get('email')?.errors?.['email'] && newUserForm.get('email')?.touched"
+              message="E-mail no formato incorreto"
+            ></app-message>
+          </div>
+          <!-- form-group// -->
+          <div class="form-group">
+            <label>Your password</label>
+            <input
+              class="form-control"
+              placeholder="******"
+              type="password"
+              name="password"
+              formControlName="password"
+              required
+            />
+            <app-message
+              *ngIf="newUserForm.get('password')?.errors?.['required'] && newUserForm.get('password')?.touched"
+              message="Senha obrigatório"
+            ></app-message>
+          </div>
+          <div class="form-group">
+            <button
+              type="submit"
+              class="btn btn-primary btn-block medio"
+              [disabled]="newUserForm.invalid"
+            >
+              Register
+            </button>
+          </div>
+          <!-- form-group// -->
+        </form>
+      </article>
+    </div>
+    <!-- card.// -->
+  </aside>
+  <!-- col.// -->
+</div>

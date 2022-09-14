@@ -1,0 +1,110 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="card jh-card">
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <div class="col-8">
+          <div *ngIf="livro | async as book">
+            <h2 data-cy="livroDetailsHeading">
+              <span jhiTranslate="bibliotecaApp.livro.detail.title">Livro</span>
+            </h2>
+
+            <dl class="row-md jh-entity-details">
+              <dt>
+                <span jhiTranslate="global.field.id">ID</span>
+              </dt>
+              <dd>
+                <span>{{ book.id }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.autor">Autor</span>
+              </dt>
+              <dd>
+                <span>{{ book.autor }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.titulo">Titulo</span>
+              </dt>
+              <dd>
+                <span>{{ book.titulo }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.dataCriacao"
+                  >Data Criacao</span
+                >
+              </dt>
+              <dd>
+                <span>{{ book.dataCriacao }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.ativo">Ativo</span>
+              </dt>
+              <dd>
+                <span>{{ book.ativo }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.proprietario"
+                  >Proprietario</span
+                >
+              </dt>
+              <dd>
+                <span>{{ book.proprietario }}</span>
+              </dd>
+            </dl>
+
+            <button
+              type="submit"
+              (click)="previousState()"
+              class="btn btn-info"
+              data-cy="entityDetailsBackButton"
+            >
+              <span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-primary"
+              [routerLink]="['/livros', book.id, 'edit']"
+              *ngIf="book.proprietario == user"
+            >
+              <span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-danger"
+              *ngIf="book.proprietario == user"
+              (click)="delete()"
+            >
+              <span class="d-none d-md-inline">Delete</span>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              *ngIf="book.ativo != 1"
+              (click)="active()"
+            >
+              <span class="d-none d-md-inline">Active</span>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              *ngIf="book.ativo === 1"
+              (click)="inactive()"
+            >
+              <span class="d-none d-md-inline">Inactive</span>
+            </button>
+            <button
+              type="button"
+              class="btn btn-primary"
+              *ngIf="book.ativo === 1"
+              (click)="rent()"
+            >
+              <span class="d-none d-md-inline">Locar</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

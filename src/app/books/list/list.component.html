@@ -1,0 +1,98 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="card jh-card">
+    <h2 id="page-heading" data-cy="LivroHeading">
+      <span jhiTranslate="bibliotecaApp.livro.home.title">Livros</span>
+
+      <div class="d-flex justify-content-end container">
+        <button class="btn btn-info me-2" (click)="refresh()">
+          <span jhiTranslate="bibliotecaApp.livro.home.refreshListLabel"
+            >Atualizar lista</span
+          >
+        </button>
+
+        <button
+          id="jh-create-entity"
+          data-cy="entityCreateButton"
+          class="btn btn-primary jh-create-entity create-livro"
+          [routerLink]="['novolivro']"
+        >
+          <span jhiTranslate="bibliotecaApp.livro.home.createLabel">
+            Criar novo livro
+          </span>
+        </button>
+      </div>
+    </h2>
+    <div
+      class="alert alert-warning container"
+      id="no-result"
+      *ngIf="books?.length === 0"
+    >
+      <span jhiTranslate="bibliotecaApp.livro.home.notFound"
+        >Nenhum livro encontrado</span
+      >
+    </div>
+    <div class="table-responsive container" *ngIf="books && books.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <th>
+            <span>ID</span>
+          </th>
+          <th>
+            <span>Autor</span>
+          </th>
+          <th>
+            <span>Título</span>
+          </th>
+          <th>
+            <span>Data de Criação</span>
+          </th>
+          <th>
+            <span> Ativo </span>
+          </th>
+          <th>
+            <span> Proprietario </span>
+          </th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let book of books">
+            <td>{{ book.id }}</td>
+            <td>{{ book.autor }}</td>
+            <td>{{ book.titulo }}</td>
+            <td>{{ book.dataCriacao }}</td>
+            <td>{{ book.ativo }}</td>
+            <td>{{ book.proprietario }}</td>
+            <td class="text-end">
+              <div class="btn-group">
+                <button
+                  type="submit"
+                  class="btn btn-info btn-sm"
+                  [routerLink]="['/livros', book.id]"
+                >
+                  <span class="d-none d-md-inline">View</span>
+                </button>
+
+                <button
+                  type="submit"
+                  class="btn btn-primary btn-sm"
+                  *ngIf="book.proprietario == user"
+                  [routerLink]="['/livros', book.id, 'edit']"
+                >
+                  <span class="d-none d-md-inline">Edit</span>
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-danger btn-sm"
+                  *ngIf="book.proprietario == user"
+                  (click)="delete(book.id ?? 0)"
+                >
+                  <span class="d-none d-md-inline">Delete</span>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

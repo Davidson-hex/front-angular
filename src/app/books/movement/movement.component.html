@@ -1,0 +1,105 @@
+<app-navbar></app-navbar>
+<div class="container-fluid">
+  <div class="card jh-card">
+    <div class="container">
+      <div class="d-flex justify-content-center">
+        <div class="col-8">
+          <div
+            class="alert alert-warning container"
+            id="no-result"
+            *ngIf="!show"
+          >
+            <span jhiTranslate="bibliotecaApp.livro.home.notFound"
+              >Você não possui nenhum livro alugado</span
+            >
+          </div>
+          <div *ngIf="movement; let movement">
+            <h2 data-cy="livroDetailsHeading">
+              <span jhiTranslate="bibliotecaApp.livro.detail.title"
+                >Livro alugado</span
+              >
+            </h2>
+
+            <dl class="row-md jh-entity-details">
+              <dt>
+                <span jhiTranslate="global.field.id">ID</span>
+              </dt>
+              <dd>
+                <span>{{ movement.id }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.autor"
+                  >ID do Livro</span
+                >
+              </dt>
+              <dd>
+                <span>{{ movement.idLivro }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.titulo">Locação</span>
+              </dt>
+              <dd>
+                <span>{{ movement.locacao }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.dataCriacao"
+                  >Data de Locação</span
+                >
+              </dt>
+              <dd>
+                <span>{{ movement.dataLocacao }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.ativo"
+                  >Previsão de Devolução</span
+                >
+              </dt>
+              <dd>
+                <span>{{ movement.previsaoDevolucao }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.proprietario"
+                  >Devolução</span
+                >
+              </dt>
+              <dd>
+                <span>{{ movement.devolucao }}</span>
+              </dd>
+              <dt *ngIf="movement.devolucao != 0">
+                <span jhiTranslate="bibliotecaApp.livro.proprietario"
+                  >Data de Devolução</span
+                >
+              </dt>
+              <dd>
+                <span *ngIf="movement.devolucao != 0">{{
+                  movement.dataDevolucao
+                }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.ativo">Status</span>
+              </dt>
+              <dd>
+                <span>{{ movement.status }}</span>
+              </dd>
+              <dt>
+                <span jhiTranslate="bibliotecaApp.livro.ativo"
+                  >Proprietário</span
+                >
+              </dt>
+              <dd>
+                <span>{{ movement.proprietario }}</span>
+              </dd>
+            </dl>
+            <button
+              type="button"
+              class="btn btn-primary"
+              (click)="return(movement.idLivro)"
+            >
+              <span class="d-none d-md-inline">Devolver livro</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

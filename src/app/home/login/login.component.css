@@ -1,0 +1,11 @@
+.centered {
+  margin: 0 auto !important;
+  float: none !important;
+}
+.mesmo-tamanho {
+  width: 15%;
+  white-space: normal;
+}
+.medio {
+  width: 100%;
+}
